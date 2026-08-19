@@ -1,0 +1,8 @@
+{
+  "replay_id": "REPLAY-FOREIGN-001",
+  "contract_id": "S-001A-REPLAY-V1",
+  "status": "SEMANTIC_EQUIVALENCE_PASS",
+  "reviewer": "Independent-Third-Party-Simulator",
+  "semantic_equivalence_verified": true,
+  "byte_identity_verified": false
+}
