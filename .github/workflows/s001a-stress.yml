@@ -1,0 +1,262 @@
+name: S-001A stress and evidence
+
+on:
+  pull_request:
+    paths:
+      - 'baseline/**'
+      - 'schemas/**'
+      - 'fixtures/**'
+      - 'evidence/**'
+      - 'scenarios/**'
+      - 'validators/**'
+      - 'runners/**'
+      - 'tools/**'
+      - 'tests/**'
+      - 'replay/**'
+      - '.github/workflows/s001a-stress.yml'
+  push:
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: 'Deterministic profile'
+        required: true
+        default: 'controlled-stress'
+        type: choice
+        options:
+          - pr-smoke
+          - controlled-stress
+      iterations:
+        description: 'Iterations for controlled stress'
+        required: true
+        default: '100'
+        type: string
+  schedule:
+    - cron: '17 2 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: s001a-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+  LOCAL_ONLY: 'true'
+
+jobs:
+  preflight:
+    name: S-001A / preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      profile: ${{ steps.profile.outputs.value }}
+      execution_id: ${{ steps.execution.outputs.value }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+      - name: Validate repository invariants
+        run: |
+          test -f baseline/public-evidence-baseline.yml
+          test -f schemas/evidence-object-2.0.schema.json
+          test -f evidence/local/EVID-EVT-0002.json
+          test -f scenarios/S-001A/stress-schedule.yml
+          test -z "$(git grep -nE '(BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|ghp_[A-Za-z0-9]+|sk-[A-Za-z0-9]+)' -- ':!*.md' || true)"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import yaml
+          baseline = yaml.safe_load(Path('baseline/public-evidence-baseline.yml').read_text())['baseline']
+          assert baseline['promotion']['state'] == 'BLOCKED'
+          assert baseline['claim']['allowed'] == ['LOCAL_RESULT_WITHIN_DECLARED_SCOPE']
+          evidence = json.loads(Path('evidence/local/EVID-EVT-0002.json').read_text())
+          assert evidence['scope'] == 'LOCAL'
+          assert evidence['assurance']['oneR'] is False
+          assert evidence['assurance']['oneA'] is False
+          PY
+      - id: profile
+        name: Select profile
+        run: |
+          value='pr-smoke'
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then value='${{ inputs.profile }}'; fi
+          if [ "${{ github.event_name }}" = "schedule" ]; then value='controlled-stress'; fi
+          echo "value=$value" >> "$GITHUB_OUTPUT"
+      - id: execution
+        name: Create execution id
+        run: echo "value=s001a-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+
+  contract-and-negative:
+    name: S-001A / contract and negative scenarios
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+      - name: Validate baseline and evidence
+        run: |
+          python validators/validate_evidence.py evidence/local/EVID-EVT-0002.json
+          python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Run negative scenario tests
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s001a-contract-${{ needs.preflight.outputs.execution_id }}
+          path: evidence/local/
+          if-no-files-found: error
+          retention-days: 14
+
+  functional:
+    name: S-001A / functional smoke
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+      - name: Execute local S-001A smoke
+        run: |
+          python runners/s001a_runner.py \
+            --profile pr-smoke \
+            --fixture evidence/local/EVID-EVT-0002.json \
+            --output out/${{ needs.preflight.outputs.execution_id }}/functional
+      - name: Validate functional invariants
+        run: python validators/validate_s001a_result.py out/${{ needs.preflight.outputs.execution_id }}/functional/result.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s001a-functional-${{ needs.preflight.outputs.execution_id }}
+          path: out/
+          if-no-files-found: error
+          retention-days: 14
+
+  controlled-stress:
+    name: S-001A / controlled stress
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    needs: [preflight, contract-and-negative, functional]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+      - name: Execute deterministic stress profile
+        run: |
+          ITERATIONS='${{ inputs.iterations || 100 }}'
+          python runners/s001a_runner.py \
+            --profile controlled-stress \
+            --iterations "$ITERATIONS" \
+            --seed 20260819 \
+            --fixture evidence/local/EVID-EVT-0002.json \
+            --fault-schedule scenarios/S-001A/stress-schedule.yml \
+            --output out/${{ needs.preflight.outputs.execution_id }}/stress
+      - name: Validate stress invariants
+        run: python validators/validate_s001a_result.py out/${{ needs.preflight.outputs.execution_id }}/stress/result.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s001a-stress-${{ needs.preflight.outputs.execution_id }}
+          path: out/
+          if-no-files-found: error
+          retention-days: 30
+
+  evidence-and-gate:
+    name: S-001A / evidence and promotion gate
+    needs: [preflight, contract-and-negative, functional, controlled-stress]
+    if: always() && needs.preflight.result == 'success' && needs.contract-and-negative.result == 'success' && needs.functional.result == 'success' && (needs.controlled-stress.result == 'success' || needs.controlled-stress.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+      - name: Download functional result
+        uses: actions/download-artifact@v4
+        with:
+          name: s001a-functional-${{ needs.preflight.outputs.execution_id }}
+          path: downloaded/functional
+      - name: Locate functional result
+        run: |
+          mkdir -p envelope
+          result=$(find downloaded/functional -type f -name result.json | head -n 1)
+          test -n "$result"
+          cp "$result" envelope/result.json
+      - name: Build portable evidence envelope
+        run: |
+          python tools/build_evidence_envelope.py \
+            --result envelope/result.json \
+            --commit "$GITHUB_SHA" \
+            --output envelope/package
+      - name: Enforce fail-closed promotion gate
+        run: python tools/evaluate_gate.py --envelope envelope/package --expected BLOCKED
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s001a-evidence-${{ needs.preflight.outputs.execution_id }}
+          path: envelope/
+          if-no-files-found: error
+          retention-days: 90
+
+  notify-failure:
+    name: Notify S-001A failure
+    needs:
+      - preflight
+      - contract-and-negative
+      - functional
+      - controlled-stress
+      - evidence-and-gate
+    if: >-
+      always() &&
+      (needs.preflight.result == 'failure' ||
+       needs.contract-and-negative.result == 'failure' ||
+       needs.functional.result == 'failure' ||
+       needs.controlled-stress.result == 'failure' ||
+       needs.evidence-and-gate.result == 'failure') &&
+      github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          REF_NAME: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+          SERVER_URL: ${{ github.server_url }}
+        run: |
+          set -euo pipefail
+          test -n "$SLACK_WEBHOOK_URL"
+          payload=$(python3 - <<'PY'
+          import json, os
+          print(json.dumps({"text": (
+              f"S-001A pipeline failed: {os.environ['REPO']} "
+              f"run {os.environ['RUN_ID']} on {os.environ['REF_NAME']} "
+              f"({os.environ['SHA'][:12]}). "
+              f"Review: {os.environ['SERVER_URL']}/{os.environ['REPO']}/actions/runs/{os.environ['RUN_ID']}"
+          )}))
+          PY
+          )
+          curl --fail --silent --show-error \
+            -X POST \
+            -H 'Content-Type: application/json' \
+            --data "$payload" \
+            "$SLACK_WEBHOOK_URL"

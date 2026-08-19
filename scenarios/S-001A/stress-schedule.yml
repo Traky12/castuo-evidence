@@ -1,0 +1,16 @@
+scenario_id: S-001A
+profile: controlled-stress-v1
+faults:
+  - NETWORK_DOWN
+  - PROCESS_RESTART
+  - DUPLICATE_DELIVERY
+  - EVENT_REORDER
+  - CLOCK_SKEW_CONTROLLED
+  - RECOVERY_REPLAY
+invariants:
+  - no_duplicate_semantic_operation
+  - no_privilege_expansion_offline
+  - evidence_root_preserved
+  - policy_decision_reproducible
+  - rollback_reference_present
+  - unresolved_conflict_blocks_claim
