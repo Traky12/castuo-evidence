@@ -1,0 +1,54 @@
+baseline:
+  snapshot_id: CASTUO-EVIDENCE-S001A-V1
+  generated_at: "2026-08-19"
+  source_repository: Castuo-system
+  source_commit: "57053ae1b1a2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
+  benchmark_id: S-001A
+  fixture_version: "1.0.0"
+  evidence_schema: "2.0.0"
+
+  capability:
+    id: CAP-OFFLINE-CONTINUITY
+    state: N3_IMPLEMENTED_LOCAL
+    evidence_level: E2_EVIDENCE_SCOPED
+    scope: LOCAL
+
+  checks:
+    local:
+      passed: 13
+      total: 13
+      status: PASS
+    remote:
+      executed: 0
+      total: 1
+      status: PENDING
+    declared_total: 14
+
+  assurance:
+    oneD:
+      value: true
+      reason: DECLARED_CONTRACT_PRESENT
+    oneV:
+      value: false
+      reason: INDEPENDENT_REVIEW_PENDING
+    oneR:
+      value: false
+      reason: FOREIGN_REPLAY_PENDING
+    oneA:
+      value: false
+      reason: AUTHORIZED_PROMOTION_PENDING
+
+  promotion:
+    state: BLOCKED
+    primary_blocker: FOREIGN_REPLAY
+
+  claim:
+    allowed:
+      - LOCAL_RESULT_WITHIN_DECLARED_SCOPE
+    prohibited:
+      - PRODUCTION_READY
+      - FIELD_VALIDATED
+      - INDEPENDENTLY_REPRODUCED
+      - PROVIDER_INDEPENDENT
+      - COMMERCIAL
+      - FEDERATED

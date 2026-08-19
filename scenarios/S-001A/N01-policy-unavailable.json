@@ -1,0 +1,13 @@
+{
+  "negative_scenario_id": "S-001A-N01",
+  "name": "Policy unavailable",
+  "mutation": {
+    "field": "policy_endpoint",
+    "operation": "disconnect"
+  },
+  "expected": {
+    "state": "FAIL_CLOSED",
+    "claim": "DENY",
+    "promotion": "BLOCKED"
+  }
+}

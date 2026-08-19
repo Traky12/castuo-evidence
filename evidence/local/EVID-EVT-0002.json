@@ -1,0 +1,22 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EVID-EVT-0002",
+  "capability_id": "CAP-OFFLINE-CONTINUITY",
+  "contract_id": "S-001A-CONTRACT",
+  "implementation_id": "local-runner-v1",
+  "execution_id": "local-s001a-001",
+  "fixture_hash": "sha256:PUBLIC_HASH_FIXTURE",
+  "input_hash": "sha256:PUBLIC_HASH_INPUT",
+  "output_hash": "sha256:PUBLIC_HASH_OUTPUT",
+  "evidence_hash": "sha256:PUBLIC_HASH_EVIDENCE",
+  "scope": "LOCAL",
+  "review_status": "REVIEW_PENDING",
+  "claim_boundary": "LOCAL_SCOPED",
+  "rollback_reference": "local-s001a-rollback",
+  "assurance": {
+    "oneD": true,
+    "oneV": false,
+    "oneR": false,
+    "oneA": false
+  }
+}
