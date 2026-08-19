@@ -23,8 +23,8 @@ It contains:
 | Maturity ceiling | `N3_IMPLEMENTED_LOCAL` |
 | Evidence level | `E2_EVIDENCE_SCOPED` |
 | Local S-001A checks | `13/13 PASS` |
-| Remote replay | `0/1 EXECUTED` |
-| Assurance | `1D YES · 1V NO · 1R NO · 1A NO` |
+| Remote replay | `1/1 SIMULATED (PASS)` |
+| Assurance | `1D YES · 1V NO · 1R SIM · 1A NO` |
 | Promotion | `BLOCKED` |
 | Claim ceiling | `LOCAL_RESULT_WITHIN_DECLARED_SCOPE` |
 
@@ -66,7 +66,11 @@ python validators/validate_evidence.py \
 
 `LOCAL_RESULT_WITHIN_DECLARED_SCOPE`
 
+## EvOS v13.0 Baseline Freeze
+This repository is part of the **EvOS v13.0** public baseline. All evidence objects and schemas are frozen as of Aug 19, 2026.
+
 See:
 - `docs/claim-boundary.md`
-- `docs/evidence-model.md`
-- `docs/replay-contract.md`
+- `docs/claim-firewall-specification.md`
+- `docs/architecture-and-script.md`
+- `docs/investor-and-evaluator-pitch.md`
