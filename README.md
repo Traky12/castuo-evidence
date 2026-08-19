@@ -6,6 +6,13 @@ Public evidence unit for the CASTÚO S-001A benchmark.
 
 This repository contains a frozen fixture, machine-readable evidence, validators, negative scenarios, claim boundaries and a replay contract.
 
+## 🔗 Ecosystem Connection
+This repository is part of the **CASTÚO-SYSTEM™** Evidence Operating System (EvOS) v13.0.
+
+- **Profile:** [Traky12](https://github.com/Traky12) — Systems Architect & Evidence Engineer.
+- **Governance:** [castuo-evolution](https://github.com/Traky12/castuo-evolution) — Control plane and evidence SSOT (Private).
+- **Core:** [Castuo-system](https://github.com/Traky12/Castuo-system) — Core platform execution (Private).
+
 ## Current public baseline
 
 | Field | State |
@@ -68,3 +75,7 @@ See:
 - `docs/claim-boundary.md`
 - `docs/assurance.md`
 - `docs/replay-contract.md`
+
+---
+**CASTÚO-SYSTEM™ — Evidence Operating System (EvOS v13.0)**
+**Gregorio Jiménez Bodes — Traky12**
