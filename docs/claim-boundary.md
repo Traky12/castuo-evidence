@@ -1,4 +1,4 @@
-# Claim Boundary
+# Claim Boundary & Claim Firewall Specification
 
 ## Allowed claim
 
@@ -17,3 +17,15 @@ The current evidence does not authorize:
 - commercial validation;
 - federation;
 - universal compliance.
+
+## Claim Firewall Rules
+
+Any operational action resulting in:
+- missing evidence (`MISSING`);
+- broken integrity (`INVALID`);
+- unknown or conflicting state (`UNKNOWN`);
+- unresolved concurrency conflict (`UNRESOLVED`);
+
+Must result strictly in:
+`→ CLAIM DENY`
+`→ PROMOTION BLOCKED`

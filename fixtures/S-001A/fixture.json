@@ -1,0 +1,23 @@
+{
+  "benchmark_id": "S-001A",
+  "version": "1.0.0",
+  "description": "Controlled-failure scenario for offline continuity and buffer recovery",
+  "phases": [
+    "device_identification",
+    "event_capture",
+    "network_down",
+    "offline_buffer",
+    "duplicate_detected",
+    "duplicate_resolved",
+    "reconnect",
+    "reconciliation",
+    "replay_started",
+    "replay_completed"
+  ],
+  "expected_decisions": {
+    "network_down": "ACCEPT_LOCAL_CONTINUATION",
+    "duplicate": "DEDUPLICATE",
+    "recovery": "RECONCILE",
+    "rollback_missing": "DENY"
+  }
+}

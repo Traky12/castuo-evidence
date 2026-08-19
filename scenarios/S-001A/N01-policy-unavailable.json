@@ -1,13 +1,46 @@
 {
-  "negative_scenario_id": "S-001A-N01",
-  "name": "Policy unavailable",
-  "mutation": {
-    "field": "policy_endpoint",
-    "operation": "disconnect"
-  },
-  "expected": {
-    "state": "FAIL_CLOSED",
-    "claim": "DENY",
-    "promotion": "BLOCKED"
-  }
+  "scenarios": [
+    {
+      "id": "S-001A-N01",
+      "name": "POLICY_UNAVAILABLE",
+      "expected_state": "BLOCKED",
+      "expected_claim": "DENY",
+      "expected_promotion": "BLOCKED"
+    },
+    {
+      "id": "S-001A-N02",
+      "name": "MISSING_PROVENANCE",
+      "expected_state": "REVIEW",
+      "expected_claim": "DENY",
+      "expected_promotion": "BLOCKED"
+    },
+    {
+      "id": "S-001A-N03",
+      "name": "EVIDENCE_HASH_MISMATCH",
+      "expected_state": "QUARANTINED",
+      "expected_claim": "DENY",
+      "expected_promotion": "BLOCKED"
+    },
+    {
+      "id": "S-001A-N04",
+      "name": "DUPLICATE_CONFLICT_UNRESOLVED",
+      "expected_state": "REVIEW",
+      "expected_claim": "DENY",
+      "expected_promotion": "BLOCKED"
+    },
+    {
+      "id": "S-001A-N05",
+      "name": "RECOVERY_INCOMPLETE",
+      "expected_state": "RECOVERY_REQUIRED",
+      "expected_claim": "DENY",
+      "expected_promotion": "BLOCKED"
+    },
+    {
+      "id": "S-001A-N06",
+      "name": "ROLLBACK_REFERENCE_MISSING",
+      "expected_state": "BLOCKED",
+      "expected_claim": "DENY",
+      "expected_promotion": "BLOCKED"
+    }
+  ]
 }

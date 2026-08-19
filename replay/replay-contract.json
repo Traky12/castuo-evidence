@@ -1,0 +1,16 @@
+{
+  "replay_contract_id": "S-001A-REPLAY-V1",
+  "fixture": "fixtures/S-001A/fixture.json",
+  "contract": "S-001A-CONTRACT",
+  "foreign_environment_required": true,
+  "independent_reviewer_required": true,
+  "byte_identity_required": false,
+  "semantic_equivalence_required": true,
+  "comparison_dimensions": [
+    "policy_decision",
+    "failure_classification",
+    "recovery_semantics",
+    "conflict_resolution",
+    "claim_boundary"
+  ]
+}

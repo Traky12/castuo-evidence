@@ -1,15 +1,17 @@
 baseline:
   snapshot_id: CASTUO-EVIDENCE-S001A-V1
   generated_at: "2026-08-19"
-  source_repository: Castuo-system
-  source_commit: "57053ae1b1a2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
   benchmark_id: S-001A
   fixture_version: "1.0.0"
   evidence_schema: "2.0.0"
 
+  source:
+    repository: Castuo-system
+    source_commit: "57053ae1b1a2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
+
   capability:
     id: CAP-OFFLINE-CONTINUITY
-    state: N3_IMPLEMENTED_LOCAL
+    maturity: N3_IMPLEMENTED_LOCAL
     evidence_level: E2_EVIDENCE_SCOPED
     scope: LOCAL
 
@@ -27,20 +29,20 @@ baseline:
   assurance:
     oneD:
       value: true
-      reason: DECLARED_CONTRACT_PRESENT
+      blocker: null
     oneV:
       value: false
-      reason: INDEPENDENT_REVIEW_PENDING
+      blocker: INDEPENDENT_REVIEW_PENDING
     oneR:
       value: false
-      reason: FOREIGN_REPLAY_PENDING
+      blocker: FOREIGN_REPLAY_PENDING
     oneA:
       value: false
-      reason: AUTHORIZED_PROMOTION_PENDING
+      blocker: AUTHORIZED_REVIEW_PENDING
 
   promotion:
     state: BLOCKED
-    primary_blocker: FOREIGN_REPLAY
+    next_action: RUN_EXTERNAL_S001A_REPLAY
 
   claim:
     allowed:

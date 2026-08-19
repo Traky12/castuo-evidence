@@ -2,42 +2,39 @@
 
 ## S-001A Freeze & Proof
 
-Public evidence unit for the CASTÚO S-001A benchmark.
+Public evidence unit for CASTÚO-SYSTEM.
 
-This repository contains a frozen fixture, machine-readable evidence, validators, negative scenarios, claim boundaries and a replay contract.
+This repository publishes a bounded, machine-readable evidence package for the S-001A controlled-failure scenario.
 
-## 🔗 Ecosystem Connection
-This repository is part of the **CASTÚO-SYSTEM™** Evidence Operating System (EvOS) v13.0.
+It contains:
+- a frozen fixture;
+- an evidence schema;
+- a local evidence object;
+- six negative scenarios;
+- claim firewall rules;
+- replay requirements;
+- reproducibility instructions;
+- a public promotion boundary.
 
-- **Profile:** [Traky12](https://github.com/Traky12) — Systems Architect & Evidence Engineer.
-- **Governance:** [castuo-evolution](https://github.com/Traky12/castuo-evolution) — Control plane and evidence SSOT (Private).
-- **Core:** [Castuo-system](https://github.com/Traky12/Castuo-system) — Core platform execution (Private).
+## Current public state
 
-## Current public baseline
-
-| Field | State |
+| Dimension | Current status |
 |---|---|
 | Maturity ceiling | `N3_IMPLEMENTED_LOCAL` |
 | Evidence level | `E2_EVIDENCE_SCOPED` |
-| Local checks | `13/13 PASS` |
-| Remote checks | `0/1 EXECUTED` |
+| Local S-001A checks | `13/13 PASS` |
+| Remote replay | `0/1 EXECUTED` |
 | Assurance | `1D YES · 1V NO · 1R NO · 1A NO` |
 | Promotion | `BLOCKED` |
 | Claim ceiling | `LOCAL_RESULT_WITHIN_DECLARED_SCOPE` |
 
-## Demonstrated
+## What this proves
 
-- frozen S-001A fixture;
-- bounded local execution;
-- machine-readable evidence object;
-- evidence schema validation;
-- six negative scenarios;
-- claim firewall;
-- rollback reference;
-- replay contract.
+This release demonstrates that the declared S-001A fixture can be executed locally and represented as machine-readable, scope-bound evidence.
 
-## Not demonstrated
+## What this does not prove
 
+This release does not prove:
 - independent verification;
 - foreign reproduction;
 - field validation;
@@ -47,11 +44,11 @@ This repository is part of the **CASTÚO-SYSTEM™** Evidence Operating System (
 - federation;
 - universal compliance.
 
-## Repository boundary
+## Repository boundaries
 
 `castuo-evidence` is the public evidence layer.
 
-The control plane, runtime integrations and private operational data remain outside this repository.
+The control plane, private runtime, internal dashboards, private integrations and operational data remain outside this repository.
 
 ## Local validation
 
@@ -65,17 +62,11 @@ python validators/validate_evidence.py \
   evidence/local/EVID-EVT-0002.json
 ```
 
-## Claim boundary
-
-The only current allowed claim is:
+## Current allowed claim
 
 `LOCAL_RESULT_WITHIN_DECLARED_SCOPE`
 
 See:
 - `docs/claim-boundary.md`
-- `docs/assurance.md`
+- `docs/evidence-model.md`
 - `docs/replay-contract.md`
-
----
-**CASTÚO-SYSTEM™ — Evidence Operating System (EvOS v13.0)**
-**Gregorio Jiménez Bodes — Traky12**
