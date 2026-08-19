@@ -68,3 +68,19 @@ See:
 - `docs/claim-boundary.md`
 - `docs/assurance.md`
 - `docs/replay-contract.md`
+
+## S-001A stress automation
+
+Run the local pre-PR validation before opening or updating a pull request:
+
+```bash
+./scripts/pre_pr_s001a.sh
+```
+
+The script runs the local smoke profile, validates invariants and metrics, builds a portable envelope and keeps `PROMOTION = BLOCKED`. Slack notification is disabled by default; enable it only explicitly with `S001A_NOTIFY=slack` and a locally managed `SLACK_WEBHOOK_URL`.
+
+The controlled-stress profile is available through GitHub Actions by manual dispatch or the scheduled workflow. See:
+
+- `docs/s001a-metrics-alerting-and-pr1-visual-format.md`
+- `docs/pr1-merge-controlled-stress-runbook.md`
+- `.github/workflows/s001a-stress.yml`

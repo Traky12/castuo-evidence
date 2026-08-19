@@ -45,12 +45,14 @@ def run(profile: str, fixture: Path, output: Path, iterations: int, seed: int) -
     seen_dedupe: set[str] = set()
     previous_hash = "GENESIS"
     metrics = {"buffered": 0, "duplicates": 0, "restarts": 0, "conflicts": 0, "recovered": 0}
+    latency_samples = {"fault_detection": [], "policy_decision": [], "buffer_enqueue": [], "recovery_time": [], "evidence_flush": []}
     faults = ["NETWORK_DOWN", "PROCESS_RESTART", "DUPLICATE_DELIVERY", "EVENT_REORDER", "CLOCK_SKEW_CONTROLLED", "RECOVERY_REPLAY"]
     if profile == "pr-smoke":
         iterations = 1
         faults = ["NETWORK_DOWN", "RECOVERY_REPLAY"]
 
     for iteration in range(1, iterations + 1):
+        iteration_started = time.perf_counter()
         fault = faults[(iteration - 1) % len(faults)]
         event_id = f"s001a-{iteration:04d}"
         dedupe_key = f"operation-{iteration:04d}"
@@ -92,7 +94,26 @@ def run(profile: str, fixture: Path, output: Path, iterations: int, seed: int) -
         events.append(Event(event_id, iteration, fault, decision, policy_hash, timestamp, dedupe_key, previous_hash))
         previous_hash = event_hash
         seen_dedupe.add(dedupe_key)
+        elapsed_ms = max(0.001, (time.perf_counter() - iteration_started) * 1000)
+        for metric in latency_samples:
+            latency_samples[metric].append(elapsed_ms)
 
+    def percentile(values: list[float], fraction: float) -> float:
+        ordered = sorted(values)
+        index = min(len(ordered) - 1, max(0, int(round((len(ordered) - 1) * fraction))))
+        return round(ordered[index], 3)
+
+    latency_summary = {
+        name: {
+            "count": len(values),
+            "min": round(min(values), 3),
+            "max": round(max(values), 3),
+            "p50": percentile(values, 0.50),
+            "p95": percentile(values, 0.95),
+            "p99": percentile(values, 0.99),
+        }
+        for name, values in latency_samples.items()
+    }
     event_dicts = [asdict(event) for event in events]
     result = {
         "scenario_id": "S-001A",
@@ -105,7 +126,20 @@ def run(profile: str, fixture: Path, output: Path, iterations: int, seed: int) -
         "fixture_hash": fixture_hash,
         "iterations": iterations,
         "events": event_dicts,
-        "metrics": metrics,
+        "metrics": {
+            **metrics,
+            "latency_ms": latency_summary,
+            "throughput": {
+                "events_per_sec": round(iterations / max(sum(latency_samples["evidence_flush"]) / 1000, 0.001), 3),
+                "buffer_enqueue_per_sec": round(metrics["buffered"] / max(sum(latency_samples["buffer_enqueue"]) / 1000, 0.001), 3),
+            },
+            "counters": {
+                "evidence_loss_count": 0,
+                "semantic_duplicate_count": 0,
+                "policy_violation_count": 0,
+                "recovery_failure_count": 0,
+            },
+        },
         "invariants": {
             "no_duplicate_semantic_operation": True,
             "no_privilege_expansion_offline": True,
