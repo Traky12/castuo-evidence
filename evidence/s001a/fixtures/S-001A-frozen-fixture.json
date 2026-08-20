@@ -1,0 +1,53 @@
+{
+  "fixture_id": "S-001A-FROZEN-E3-001",
+  "scenario_id": "S-001A",
+  "version": "1.0.0",
+  "purpose": "Independent replay of evidence-preserving local continuity under connectivity loss",
+  "initial_state": "CONNECTED",
+  "events": [
+    {
+      "seq": 1,
+      "event": "OPERATION_STARTED",
+      "network": "AVAILABLE",
+      "expected_state": "ACTIVE"
+    },
+    {
+      "seq": 2,
+      "event": "NETWORK_DOWN",
+      "network": "UNAVAILABLE",
+      "expected_state": "BUFFERED"
+    },
+    {
+      "seq": 3,
+      "event": "LOCAL_EVENT_APPENDED",
+      "network": "UNAVAILABLE",
+      "expected_state": "BUFFERED",
+      "evidence_required": true
+    },
+    {
+      "seq": 4,
+      "event": "NETWORK_RESTORED",
+      "network": "AVAILABLE",
+      "expected_state": "RECOVERING"
+    },
+    {
+      "seq": 5,
+      "event": "BUFFER_REPLAYED",
+      "network": "AVAILABLE",
+      "expected_state": "SYNCHRONIZED"
+    },
+    {
+      "seq": 6,
+      "event": "EVIDENCE_REPLAYED",
+      "network": "AVAILABLE",
+      "expected_state": "REVIEWABLE"
+    }
+  ],
+  "expected_invariants": {
+    "local_operation_continues": true,
+    "evidence_preserved": true,
+    "synchronization_after_recovery": true,
+    "evidence_loss": 0,
+    "production_claim": false
+  }
+}

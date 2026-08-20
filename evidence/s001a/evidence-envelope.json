@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "E3-001-LOCAL-CASTUO-AUDIT-2026-08-20",
+  "capability_id": "S-001A",
+  "contract": "CAP-S001A-OFFLINE-CONTINUITY",
+  "execution": {
+    "mode": "LOCAL_ONLY",
+    "environment": "sandbox",
+    "platform": "Linux",
+    "runtime": "Python 3.12.3",
+    "source_repository": "Traky12/Castuo-system",
+    "source_commit": "5d4c5b64b0546406702badc4a3098dd67f262da3",
+    "external_network": false,
+    "production_claim": false
+  },
+  "scope": {
+    "scenario": "S-001A",
+    "fixture": "governance/evidence/E3-001-S001A/fixtures/S-001A-frozen-fixture.json",
+    "claim_boundary": "LOCAL_RESULT_NO_CLAIM"
+  },
+  "observations": {
+    "replay": "PASS_LOCAL_NO_CLAIM",
+    "targeted_pytest": "53 passed, 1 skipped",
+    "python_compileall": "PASS",
+    "secret_hook": "PASS_NO_STAGED_FILES",
+    "binary_gate": "BLOCK",
+    "independence": "NOT_ESTABLISHED",
+    "review": "PENDING"
+  },
+  "promotion": {
+    "status": "BLOCKED",
+    "decision": "BLOCK",
+    "reason": "security, independent review and rollback evidence are not closed",
+    "one_d": true,
+    "one_v": true,
+    "one_r": false,
+    "one_a": false
+  },
+  "artifacts": {
+    "baseline": "dafd24b20c437a8945b8b2ae304ec35580600418f56cbf5a0644e65d84b82e7c",
+    "contract": "042f7cde58776ad039944848018fb0b913cc21afc1c576364e6d2fe7a8e052e0",
+    "gate_validator": "319d2710f2c51dc8926f08c356cf2933e15e17c39ebdc491534a9fb34a0ef1c7",
+    "gate_state": "3d7f69326854200ea17315ad540ceda5384de12bf275f1ed3ff6e7a5a7836b31",
+    "gate_validation": "5df7de3436ba08c2c5e5203fc016bfd8f0a9dd4e24617bf03d70ce895d3ec9a7",
+    "replay_result": "301d39926274ebd6c592700ca2b4736aeb4d0b24e75a91fe2bdd3b5f6102c9f5",
+    "test_log": "321662b2ad18ba0eb9563b3ee1005a51248af08b66edc9baca8bf0c1ecee5f88",
+    "security_log": "7be71c23b16f12d45c6ef1852697f35198e67aead0c138791574f41d52a5ace5"
+  },
+  "review": {
+    "state": "PENDING",
+    "reviewer": null,
+    "independence": "REQUIRED",
+    "review_date": null
+  },
+  "limitations": [
+    "La ejecución es local-only y no constituye validación independiente.",
+    "No se ejecutó operación remota, despliegue, sincronización real ni piloto de campo.",
+    "Los controles anticiberataques observados en el registro del ecosistema están documentados; su cobertura operacional requiere pruebas y evidencia fechada.",
+    "No se verificó salida de proveedor ni operación continuada con proveedor alternativo.",
+    "No se promociona N5, N6, producción, federación, operación comercial ni soberanía plena."
+  ],
+  "next_gate": "F4_SECURITY_AND_RECOVERY_EVIDENCE"
+}
