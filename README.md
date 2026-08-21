@@ -40,6 +40,12 @@ This repository contains a frozen fixture, machine-readable evidence, validators
 - federation;
 - universal compliance.
 
+## Cross-repository integration
+
+The canonical integration map and control-plane contracts are maintained in [`castuo-evolution`](https://github.com/Traky12/castuo-evolution/blob/integration/connection-analysis-2026-08/data/architecture/integration-map.yaml). The public E3-001 verification protocol is maintained in [`castuo-e3-001`](https://github.com/Traky12/castuo-e3-001). The core implementation is [`Castuo-system`](https://github.com/Traky12/Castuo-system), and the public read-only projection is the [Field Signal Ledger dashboard](https://castuodash-pgzxukib.manus.space/).
+
+See [`docs/CASTUO_INTEGRATION_BOUNDARY_2026.md`](docs/CASTUO_INTEGRATION_BOUNDARY_2026.md) for connection contracts and failure policies. D0/D1 provider-substitution fixtures under [`fixtures/dependency-exit`](fixtures/dependency-exit) are reproducible test inputs only; they do not demonstrate provider independence.
+
 ## Repository boundary
 
 `castuo-evidence` is the public evidence layer.
@@ -68,6 +74,7 @@ See:
 - `docs/claim-boundary.md`
 - `docs/assurance.md`
 - `docs/replay-contract.md`
+- `docs/CASTUO_INTEGRATION_BOUNDARY_2026.md`
 
 ## S-001A stress automation
 

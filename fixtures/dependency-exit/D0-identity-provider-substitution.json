@@ -1,0 +1,17 @@
+{
+  "fixture_id": "DEP-EXIT-D0-001",
+  "dependency_id": "identity-provider",
+  "criticality": "D0",
+  "provider_a": "configured-identity-service",
+  "provider_b": "offline-degraded-identity",
+  "canonical_contract": "bounded-identity-and-expiry",
+  "fault": "provider_a_unavailable",
+  "expected_decision": "BOUNDED_DEGRADED_IDENTITY",
+  "observed_decision": "BOUNDED_DEGRADED_IDENTITY",
+  "continued_operation": true,
+  "substitution_executed": false,
+  "replay_reference": "fixture-only-not-external-replay",
+  "evidence_state": "FIXTURE_ONLY",
+  "claim_boundary": "NO_EXTERNAL_VERIFICATION_CLAIM",
+  "promotion": "BLOCKED"
+}
