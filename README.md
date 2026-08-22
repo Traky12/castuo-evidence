@@ -84,3 +84,7 @@ The controlled-stress profile is available through GitHub Actions by manual disp
 - `docs/s001a-metrics-alerting-and-pr1-visual-format.md`
 - `docs/pr1-merge-controlled-stress-runbook.md`
 - `.github/workflows/s001a-stress.yml`
+
+## CASTÚO evidence-scoped integration
+
+See the [ecosystem integration record](docs/CASTUO_ECOSYSTEM_INTEGRATION_2026-08-22.md) for the current capability, evidence, security and promotion boundary.
