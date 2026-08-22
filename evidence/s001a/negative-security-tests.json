@@ -1,0 +1,34 @@
+{
+  "baseline_envelope_sha256": "69fecb511ba069f0cce43d6d09dd5be1afe7e656c7d993c96e531b4f8014ea27",
+  "cases": [
+    {
+      "case_id": "NEG-001-TAMPERED-CLAIM-BOUNDARY",
+      "expected": "BLOCK",
+      "observed": "BLOCK",
+      "reason": "tampered envelope changes canonical digest"
+    },
+    {
+      "case_id": "NEG-002-UNKNOWN-GATE-STATE",
+      "expected": "BLOCK",
+      "observed": "BLOCK",
+      "reason": "unknown mandatory state is not green"
+    },
+    {
+      "case_id": "NEG-003-SCOPE-EXPANSION",
+      "expected": "BLOCK",
+      "observed": "BLOCK",
+      "reason": "scope expansion requires reassessment"
+    },
+    {
+      "case_id": "NEG-004-REPLAY-FAILURE",
+      "expected": "BLOCK",
+      "observed": "BLOCK",
+      "reason": "replay failure blocks promotion"
+    }
+  ],
+  "claim_boundary": "LOCAL_RESULT_NO_CLAIM",
+  "execution_mode": "LOCAL_ONLY",
+  "promotion": "BLOCKED",
+  "status": "PASS_LOCAL_NO_CLAIM",
+  "suite_id": "S-001A-NEGATIVE-SECURITY-LOCAL-001"
+}

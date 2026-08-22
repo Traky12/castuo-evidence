@@ -1,0 +1,1 @@
+{"checks": {"event_sequence": true, "fixture_id": true, "invariants": true, "no_production_claim": true, "scenario_id": true, "state_sequence": true}, "status": "PASS_FOREIGN_SEMANTIC_REPLAY"}

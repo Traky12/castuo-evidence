@@ -1,0 +1,37 @@
+{
+  "evidence_id": "E3-001-LOCAL-REPLAY",
+  "scenario_id": "S-001A",
+  "fixture_id": "S-001A-FROZEN-E3-001",
+  "execution_mode": "LOCAL_ONLY",
+  "independence": "NOT_ESTABLISHED",
+  "review_state": "PENDING",
+  "observed_sequence": [
+    "OPERATION_STARTED",
+    "NETWORK_DOWN",
+    "LOCAL_EVENT_APPENDED",
+    "NETWORK_RESTORED",
+    "BUFFER_REPLAYED",
+    "EVIDENCE_REPLAYED"
+  ],
+  "observed_states": [
+    "ACTIVE",
+    "BUFFERED",
+    "BUFFERED",
+    "RECOVERING",
+    "SYNCHRONIZED",
+    "REVIEWABLE"
+  ],
+  "invariants": {
+    "local_operation_continues": true,
+    "evidence_preserved": true,
+    "synchronization_after_recovery": true,
+    "evidence_loss": 0,
+    "production_claim": false
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.18.38+-x86_64-with-glibc2.39"
+  },
+  "claim_boundary": "LOCAL_RESULT_NO_CLAIM",
+  "promotion": "BLOCKED"
+}
