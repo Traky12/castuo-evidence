@@ -45,9 +45,19 @@ hashes and execution all match under review.
 2. **Fixture.** `fixture_hash = sha256(EVID-EVT-0002.json @ 4b28708)`, i.e. the
    evidence object's own placeholder template. The hash is recomputable
    (`git show 4b28708:evidence/local/EVID-EVT-0002.json | sha256sum` →
-   `7c2ebd98…`), but it identifies a template, not scenario data. No separate
-   scenario fixture was found in `castuo-evidence` (all blobs), `Castuo-system`
-   or `castuo-evolution` (1,166 candidate blobs scanned).
+   `7c2ebd98…`), but it identifies a template, not scenario data. No file in
+   `castuo-evidence`, `Castuo-system` or `castuo-evolution` has a hash matching
+   any declared value.
+3. **Candidate fixture on a divergent branch.** This repository has two
+   diverging lines: `master` (default branch, `f230cb8`, where
+   `EVID-EVT-0002` lives) and `main` (`3e88ede`). Commit `402dd0f` on `main`
+   ("add definitive S-001A fixtures…", 2026-08-19) adds
+   `fixtures/S-001A/fixture.json` — a real scenario fixture (phases and
+   expected decisions), SHA-256 `cb20e257a4fae3fbb1fbb193977966c1e1b6939a5cd3770b5d8aa7c58d66c977`.
+   It is **not referenced by any evidence object**, and the `main` baseline
+   declares the same fabricated `source_commit`. It is a candidate for step 6,
+   not verified evidence. Which of the two branches is canonical is itself an
+   open decision.
 
 ## Defect B — non-deterministic output (independent of Defect A)
 
@@ -69,7 +79,7 @@ are **excluded** from the reproducibility hash.
 | 2 | Classify `EVID-EVT-0002` as HISTORICAL / DEFECTIVE PROVENANCE | ✅ Done — README + this record |
 | 3 | Open a provenance incident | ✅ Done — issue [#8](https://github.com/Traky12/castuo-evidence/issues/8) |
 | 4 | Identify the real source commit of the S-001A scenario | ⛔ **Blocked / not resolved** — only a false lead found (Defect A §1) |
-| 5 | Locate a real scenario fixture | ⛔ **Blocked / not resolved** — none found (Defect A §2) |
+| 5 | Locate a real scenario fixture | ⛔ **Blocked / not resolved** — a candidate exists on branch `main` (`fixtures/S-001A/fixture.json`, Defect A §3) but is unlinked to any evidence object and shares the fabricated source commit; requires deciding the canonical branch and verifying its origin |
 | 6 | Regenerate a verifiable, frozen scenario fixture (a separate file, not the evidence object) | ⬜ Pending |
 | 7 | Separate the deterministic functional result from timing telemetry (Defect B rule) | ⬜ Pending — runner code change, needs review |
 | 8 | Generate `EVID-EVT-0002-R1` with real `source_commit`, fixture hash and manifest (tool, version, environment, UTC date), referencing `EVID-EVT-0002` | ⬜ Pending |

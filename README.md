@@ -78,9 +78,13 @@ fixture are **blocked**).
    (`git show 4b28708:evidence/local/EVID-EVT-0002.json | sha256sum`), but it
    identifies the evidence object's own template, not scenario data: the
    runner is invoked with `--fixture evidence/local/EVID-EVT-0002.json`. No
-   separate scenario fixture was found in this repository, nor in the
-   `Castuo-system` or `castuo-evolution` histories (1,166 candidate blobs
-   scanned).
+   file in this repository, `Castuo-system` or `castuo-evolution` has a hash
+   matching any declared value. A candidate scenario fixture exists on the
+   divergent `main` branch (`fixtures/S-001A/fixture.json`, commit `402dd0f`),
+   but no evidence object references it — see
+   [`EVID-REANCHOR-001`](docs/reanchor/EVID-REANCHOR-001.md) Defect A §3.
+   This repository has two diverging lines (`master`, the default branch, and
+   `main`); which one is canonical is an open decision.
 3. **Baseline counters are historical.** The baseline declares
    `local 13/13` and `remote 0/1` (2026-08-19). Today's verifiable figures are
    those in the status table above.
