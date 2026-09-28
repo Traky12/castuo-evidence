@@ -1,7 +1,8 @@
 # CASTÚO Evidence
 
-> **⚠️ Non-canonical branch (`main`).** The default and provisional
-> authority branch is **`master`**. This branch diverged on 2026-08-19 and is
+> **⚠️ Branch `main`: DIVERGENT / NON-CANONICAL / UNDER RECONCILIATION.**
+> The canonical branch is **`master`** (provisional, owner decision
+> 2026-09-28). This branch diverged on 2026-08-19 and is
 > kept for reference only; do not rely on it as current evidence. Known
 > issues: `replay/results/S-001A-foreign-result.json` is a **simulation
 > output**, not an independent review; the scenario fixture here is a
