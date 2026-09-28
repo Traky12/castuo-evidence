@@ -80,7 +80,7 @@ are **excluded** from the reproducibility hash.
 | 3 | Open a provenance incident | ✅ Done — issue [#8](https://github.com/Traky12/castuo-evidence/issues/8) |
 | 4 | Identify the real source commit of the S-001A scenario | ⛔ **Blocked / not resolved** — only a false lead found (Defect A §1) |
 | 5 | Locate a real scenario fixture | ⛔ **Blocked / not resolved** — a candidate exists on branch `main` (`fixtures/S-001A/fixture.json`, Defect A §3) but is unlinked to any evidence object and shares the fabricated source commit; requires deciding the canonical branch and verifying its origin |
-| 6 | Regenerate a verifiable, frozen scenario fixture (a separate file, not the evidence object) | ⬜ Pending |
+| 6 | Regenerate a verifiable, frozen scenario fixture (a separate file, not the evidence object) **and a runner that actually executes its phases and expected decisions** (today the runner only hashes the fixture bytes; see [`EVID-BRANCH-RECONCILIATION-001`](EVID-BRANCH-RECONCILIATION-001.md)) | ⬜ Pending |
 | 7 | Separate the deterministic functional result from timing telemetry (Defect B rule) | ⬜ Pending — runner code change, needs review |
 | 8 | Generate `EVID-EVT-0002-R1` with real `source_commit`, fixture hash and manifest (tool, version, environment, UTC date), referencing `EVID-EVT-0002` | ⬜ Pending |
 | 9 | Independent validation (foreign replay per `docs/S001A_FOREIGN_REPLAY_PROTOCOL.md`) | ⬜ Pending |
