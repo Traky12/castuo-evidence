@@ -58,8 +58,11 @@ OUTPUT · NOT DUE-DILIGENCE READY**. The evidence files are **not** edited:
 changing an evidence record after the fact would break its integrity.
 Re-anchoring follows
 [`docs/reanchor/EVID-REANCHOR-001.md`](docs/reanchor/EVID-REANCHOR-001.md)
-(steps 1–3 done; identifying the real source commit and a real scenario
-fixture are **blocked**).
+(steps 1–3 done; identifying the real source commit is **blocked**;
+locating a real scenario fixture is **partial**: a candidate exists on `main`,
+unlinked and not verified). Canonical branch: **`master` (provisional,
+owner decision 2026-09-28)**; `main` is divergent, non-canonical and under
+reconciliation.
 
 ### Defect A — provenance of the baseline
 

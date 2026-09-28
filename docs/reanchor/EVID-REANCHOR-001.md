@@ -5,7 +5,7 @@
 | Opened | 2026-09-28 |
 | Affected object | `evidence/local/EVID-EVT-0002.json` + `baseline/public-evidence-baseline.yml` |
 | Classification of affected object | **HISTORICAL · DEFECTIVE PROVENANCE · NON-DETERMINISTIC OUTPUT · NOT DUE-DILIGENCE READY** |
-| Process status | `OPEN` — steps 1–3 done; steps 4–5 **blocked**; steps 6–12 pending |
+| Process status | `OPEN` — steps 1–3 done; step 4 **blocked**; step 5 **partial**; steps 6–12 pending |
 | Owner | `PENDING — PROJECT OWNER DECISION` |
 | Incident | [#8](https://github.com/Traky12/castuo-evidence/issues/8) |
 
@@ -79,7 +79,7 @@ are **excluded** from the reproducibility hash.
 | 2 | Classify `EVID-EVT-0002` as HISTORICAL / DEFECTIVE PROVENANCE | ✅ Done — README + this record |
 | 3 | Open a provenance incident | ✅ Done — issue [#8](https://github.com/Traky12/castuo-evidence/issues/8) |
 | 4 | Identify the real source commit of the S-001A scenario | ⛔ **Blocked / not resolved** — only a false lead found (Defect A §1) |
-| 5 | Locate a real scenario fixture | ⛔ **Blocked / not resolved** — a candidate exists on branch `main` (`fixtures/S-001A/fixture.json`, Defect A §3) but is unlinked to any evidence object and shares the fabricated source commit; requires deciding the canonical branch and verifying its origin |
+| 5 | Locate a real scenario fixture | 🟡 **PARTIAL** — candidate found on `main` (`fixtures/S-001A/fixture.json`, `402dd0f`): CANDIDATE · UNLINKED · NOT VERIFIED; origin and link to `EVID-EVT-0002` unproven (Defect A §3) |
 | 6 | Regenerate a verifiable, frozen scenario fixture (a separate file, not the evidence object) **and a runner that actually executes its phases and expected decisions** (today the runner only hashes the fixture bytes; see [`EVID-BRANCH-RECONCILIATION-001`](EVID-BRANCH-RECONCILIATION-001.md)) | ⬜ Pending |
 | 7 | Separate the deterministic functional result from timing telemetry (Defect B rule) | ⬜ Pending — runner code change, needs review |
 | 8 | Generate `EVID-EVT-0002-R1` with real `source_commit`, fixture hash and manifest (tool, version, environment, UTC date), referencing `EVID-EVT-0002` | ⬜ Pending |

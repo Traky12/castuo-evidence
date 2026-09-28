@@ -3,9 +3,26 @@
 | Field | Value |
 |---|---|
 | Opened | 2026-09-28 (read-only analysis) |
-| Status | `OPEN` — proposal pending owner decision; no branch modified |
+| Status | `OPEN` — **owner decision 2026-09-28: `master` = canonical, PROVISIONAL**; reconciliation in progress; no branch modified |
 | Related | [`EVID-REANCHOR-001`](EVID-REANCHOR-001.md) · issue #8 |
 | Owner | `PENDING — PROJECT OWNER DECISION` |
+
+## Decision (owner, 2026-09-28)
+
+```text
+Canonical branch:  master
+Status:            PROVISIONAL
+Reason:            default branch; holds the operational toolchain and the
+                   daily CI workflows; current base of all PRs.
+main:              DIVERGENT / NON-CANONICAL / UNDER RECONCILIATION
+Review condition:  this reconciliation completed, candidate fixture
+                   validated, and a consolidation strategy approved.
+```
+
+Until the review condition is met: **do not merge `main` into `master`, do
+not change the default branch, and do not delete any branch.** `main` may hold
+useful assets (such as the candidate fixture), but it does not gain authority
+by holding more documentation or historical results.
 
 ## Facts
 
