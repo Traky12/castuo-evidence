@@ -10,6 +10,14 @@ object, a claim boundary and a foreign-replay protocol.
 > contributions are not accepted until a contributor licence agreement (CLA)
 > or contribution policy is defined.
 
+## Architectural identity
+
+- **Architectural name:** `castuo-evidence-pack`
+- **Role:** Public bounded evidence packages, manifests, hashes and claim-scoped artefacts.
+- **Boundary:** Evidence surface only; historical S-001A provenance defects remain blocking for due-diligence use.
+- **Status:** `BLOCKED`
+- **Quality profile:** [`.castuo/repository-profile.yaml`](.castuo/repository-profile.yaml)
+
 ## Purpose and scope
 
 - **What it is:** a public, inspectable evidence unit for one bounded scenario
