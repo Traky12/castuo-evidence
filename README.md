@@ -1,86 +1,154 @@
 # CASTÚO Evidence
 
-## S-001A Freeze & Proof
+Public evidence surface for the CASTÚO-SYSTEM™ **S-001A** offline-continuity
+scenario: a runner, validators, negative scenarios, a machine-readable evidence
+object, a claim boundary and a foreign-replay protocol.
 
-Public evidence unit for the CASTÚO S-001A benchmark.
+> **License: pending IP review.** This repository is **not** open source: no
+> license has been granted. Until a `LICENSE` file is published, default
+> copyright applies (all rights reserved by the author). External
+> contributions are not accepted until a contributor licence agreement (CLA)
+> or contribution policy is defined.
 
-This repository contains a frozen fixture, machine-readable evidence, validators, negative scenarios, claim boundaries and a replay contract.
+## Architectural identity
 
-## Current public baseline
+- **Architectural name:** `castuo-evidence-pack`
+- **Role:** Public bounded evidence packages, manifests, hashes and claim-scoped artefacts.
+- **Boundary:** Evidence surface only; historical S-001A provenance defects remain blocking for due-diligence use.
+- **Status:** `BLOCKED`
+- **Quality profile:** [`.castuo/repository-profile.yaml`](.castuo/repository-profile.yaml)
 
-| Field | State |
-|---|---|
-| Maturity ceiling | `N3_IMPLEMENTED_LOCAL` |
-| Evidence level | `E2_EVIDENCE_SCOPED` |
-| Local checks | `13/13 PASS` |
-| Remote checks | `0/1 EXECUTED` |
-| Assurance | `1D YES · 1V NO · 1R NO · 1A NO` |
-| Promotion | `BLOCKED` |
-| Claim ceiling | `LOCAL_RESULT_WITHIN_DECLARED_SCOPE` |
+## Purpose and scope
 
-## Demonstrated
+- **What it is:** a public, inspectable evidence unit for one bounded scenario
+  (S-001A, capability `CAP-OFFLINE-CONTINUITY`), executed locally and in CI.
+- **What it is not:** it does not imply field, clinical, production,
+  regulatory or commercial validation, and it is not independent verification.
+- **Authority:** the canonical authority for CASTÚO-SYSTEM code and
+  operational documentation is the private `Castuo-system` repository. The
+  control plane, runtime integrations and private operational data are outside
+  this repository.
 
-- frozen S-001A fixture;
-- bounded local execution;
-- machine-readable evidence object;
-- evidence schema validation;
-- six negative scenarios;
-- claim firewall;
-- rollback reference;
-- replay contract.
+## Status (verified 2026-09-28)
 
-## Not demonstrated
+Statuses use the CASTÚO taxonomy: `CURRENT` (implemented and verifiable) ·
+`TARGET` · `EXPERIMENTAL` · `PENDING` (planned, or evidence incomplete) ·
+`NOT_CLAIMED`.
 
-- independent verification;
-- foreign reproduction;
-- field validation;
-- production readiness;
-- provider independence;
-- commercial validation;
-- federation;
-- universal compliance.
+| Item | Status | Evidence / limitation |
+|---|---|---|
+| Local tests (`pytest`) | `CURRENT` | `f230cb8`, 2026-09-28: 3 passed |
+| Evidence object schema validation | `CURRENT` | `validators/validate_evidence.py evidence/local/EVID-EVT-0002.json` → valid against schema 2.0.0 |
+| Pre-PR smoke (`scripts/pre_pr_s001a.sh`) | `CURRENT` | 2026-09-28: pr-smoke (1 iteration), result and metrics valid, envelope built, promotion stays `BLOCKED` |
+| Scheduled CI (`S-001A stress and evidence schedule`) | `CURRENT` | 57 of 57 recorded runs succeeded (daily, controlled-stress profile). It checks repository invariants, schema validation, negative scenario tests, smoke and functional invariants |
+| Negative scenarios | `CURRENT` | Scenario files under `scenarios/S-001A/`, exercised by the test step in CI |
+| Claim firewall / claim boundary | `CURRENT` | [`docs/claim-boundary.md`](docs/claim-boundary.md) |
+| Baseline provenance (source commit) | `BLOCKED` — defective | Defect A §1: real source commit not identified |
+| Fixture provenance | `BLOCKED` — defective | Defect A §2: no scenario fixture found |
+| Output / evidence hash reproducibility | `BLOCKED` — non-deterministic | Defect B |
+| Independent reproducibility | Not yet demonstrated | Protocol defined in [`docs/S001A_FOREIGN_REPLAY_PROTOCOL.md`](docs/S001A_FOREIGN_REPLAY_PROTOCOL.md); not executed |
+| Due-diligence readiness | **Not ready** | Until [`EVID-REANCHOR-001`](docs/reanchor/EVID-REANCHOR-001.md) is complete and independently reviewed |
+| Promotion | `BLOCKED` | By design until foreign replay and human review |
 
-## Repository boundary
+The allowed claim remains exactly `LOCAL_RESULT_WITHIN_DECLARED_SCOPE`.
 
-`castuo-evidence` is the public evidence layer.
+> The repository contains schema-validation mechanisms and evidence workflows
+> that work according to the documented tests. However, the historical
+> baseline `EVID-EVT-0002` has provenance defects and currently has neither a
+> verifiable scenario fixture nor bit-for-bit reproducible results. It must
+> therefore not be used as conclusive technical evidence, nor to support due
+> diligence, until EVID-REANCHOR-001 is complete.
 
-The control plane, runtime integrations and private operational data remain outside this repository.
+## Known defects of EVID-EVT-0002 (found 2026-09-28)
+
+Classification: **HISTORICAL · DEFECTIVE PROVENANCE · NON-DETERMINISTIC
+OUTPUT · NOT DUE-DILIGENCE READY**. The evidence files are **not** edited:
+changing an evidence record after the fact would break its integrity.
+Re-anchoring follows
+[`docs/reanchor/EVID-REANCHOR-001.md`](docs/reanchor/EVID-REANCHOR-001.md)
+(steps 1–3 done; identifying the real source commit is **blocked**;
+locating a real scenario fixture is **partial**: a candidate exists on `main`,
+unlinked and not verified). Canonical branch: **`master` (provisional,
+owner decision 2026-09-28)**; `main` is divergent, non-canonical and under
+reconciliation.
+
+### Defect A — provenance of the baseline
+
+1. **Source commit.** `baseline/public-evidence-baseline.yml` declares
+   `source_repository: Castuo-system` and
+   `source_commit: 57053ae1b1a2c3d4e5f6a7b8c9d0e1f2a3b4c5d6`. No such commit
+   exists in `Castuo-system`. Its first 8 characters match an unrelated
+   documentation commit in the private `castuo-evolution` repository
+   (`57053ae17b0b…`, 2026-08-15); the remaining characters are a filler
+   sequence (`b1a2c3d4e5f6…`). That is a **false lead, not the real origin**:
+   the real source commit of the S-001A scenario has not been identified.
+2. **Fixture.** The declared `fixture_hash` / `input_hash` (`sha256:7c2ebd98…`)
+   is the SHA-256 of `evidence/local/EVID-EVT-0002.json` **as of commit
+   `4b28708`**, when that file still held placeholder hashes
+   (`"sha256:PUBLIC_HASH_FIXTURE"`, …). It is recomputable
+   (`git show 4b28708:evidence/local/EVID-EVT-0002.json | sha256sum`), but it
+   identifies the evidence object's own template, not scenario data: the
+   runner is invoked with `--fixture evidence/local/EVID-EVT-0002.json`. No
+   file in this repository, `Castuo-system` or `castuo-evolution` has a hash
+   matching any declared value. A candidate scenario fixture exists on the
+   divergent `main` branch (`fixtures/S-001A/fixture.json`, commit `402dd0f`),
+   but no evidence object references it — see
+   [`EVID-REANCHOR-001`](docs/reanchor/EVID-REANCHOR-001.md) Defect A §3.
+   This repository has two diverging lines (`master`, the default branch, and
+   `main`); which one is canonical is an open decision.
+3. **Baseline counters are historical.** The baseline declares
+   `local 13/13` and `remote 0/1` (2026-08-19). Today's verifiable figures are
+   those in the status table above.
+
+### Defect B — non-deterministic output (independent of Defect A)
+
+The runner records wall-clock latencies (`time.perf_counter()`) inside
+`result.json`, and `output_hash` / `evidence_hash` are computed over it. Two
+runs with the same fixture and seed produce different `output_hash` values, so
+the declared `output_hash` (`43dcc00c…`) and `evidence_hash` (`102f15ab…`)
+cannot be reproduced, even with a correct fixture and source commit.
+
+**Rule for re-anchored objects (R1/R2):** the reproducibility hash covers only
+inputs, configuration, runner version and the deterministic functional
+result. Timing metrics are kept as contextual telemetry in a separate artifact,
+excluded from the reproducibility hash.
 
 ## Local validation
+
+Linux / macOS:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
 pytest -q
-python validators/validate_baseline.py
-python validators/validate_evidence.py \
-  evidence/local/EVID-EVT-0002.json
-```
-
-## Claim boundary
-
-The only current allowed claim is:
-
-`LOCAL_RESULT_WITHIN_DECLARED_SCOPE`
-
-See:
-- `docs/claim-boundary.md`
-- `docs/assurance.md`
-- `docs/replay-contract.md`
-
-## S-001A stress automation
-
-Run the local pre-PR validation before opening or updating a pull request:
-
-```bash
+python validators/validate_evidence.py evidence/local/EVID-EVT-0002.json
 ./scripts/pre_pr_s001a.sh
 ```
 
-The script runs the local smoke profile, validates invariants and metrics, builds a portable envelope and keeps `PROMOTION = BLOCKED`. Slack notification is disabled by default; enable it only explicitly with `S001A_NOTIFY=slack` and a locally managed `SLACK_WEBHOOK_URL`.
+Windows (Git Bash): the scripts call `python3`, which on Windows is often the
+Microsoft Store stub (`Python was not found…`). Run the Python commands with
+`python`, and put a `python3` shim that forwards to `python` on `PATH` before
+running `scripts/pre_pr_s001a.sh`.
 
-The controlled-stress profile is available through GitHub Actions by manual dispatch or the scheduled workflow. See:
+`pre_pr_s001a.sh` runs the local smoke profile, validates invariants and
+metrics, builds a portable envelope and keeps `PROMOTION = BLOCKED`. Slack
+notification is disabled by default; enable it only explicitly with
+`S001A_NOTIFY=slack` and a locally managed `SLACK_WEBHOOK_URL`.
 
-- `docs/s001a-metrics-alerting-and-pr1-visual-format.md`
-- `docs/pr1-merge-controlled-stress-runbook.md`
-- `.github/workflows/s001a-stress.yml`
+The controlled-stress profile runs in GitHub Actions on schedule or by manual
+dispatch. See:
+
+- [`docs/s001a-metrics-alerting-and-pr1-visual-format.md`](docs/s001a-metrics-alerting-and-pr1-visual-format.md)
+- [`docs/pr1-merge-controlled-stress-runbook.md`](docs/pr1-merge-controlled-stress-runbook.md)
+- [`.github/workflows/s001a-stress.yml`](.github/workflows/s001a-stress.yml)
+
+## Not demonstrated
+
+Independent verification · foreign reproduction · field validation ·
+clinical validation · production readiness · provider independence ·
+commercial validation · federation · universal or regulatory compliance.
+
+## Security
+
+See [`SECURITY.md`](SECURITY.md).
