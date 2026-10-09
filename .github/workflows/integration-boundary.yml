@@ -1,0 +1,40 @@
+name: Evidence integration boundary
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'fixtures/**'
+      - 'validators/**'
+      - 'tests/**'
+      - 'docs/CASTUO_INTEGRATION_BOUNDARY_2026.md'
+      - '.github/workflows/integration-boundary.yml'
+  pull_request:
+    paths:
+      - 'fixtures/**'
+      - 'validators/**'
+      - 'tests/**'
+      - 'docs/CASTUO_INTEGRATION_BOUNDARY_2026.md'
+      - '.github/workflows/integration-boundary.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-evidence-boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-dev.txt pytest
+      - name: Validate evidence schema and boundary
+        run: |
+          python -m pytest -q tests/test_evidence_schema.py tests/test_dependency_exit_fixtures.py
+          python validators/validate_dependency_exit_fixtures.py fixtures/dependency-exit/*.json
+      - name: Validate local evidence object
+        run: python validators/validate_evidence.py evidence/local/EVID-EVT-0002.json
