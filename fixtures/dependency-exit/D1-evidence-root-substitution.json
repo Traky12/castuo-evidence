@@ -1,0 +1,17 @@
+{
+  "fixture_id": "DEP-EXIT-D1-001",
+  "dependency_id": "evidence-root",
+  "criticality": "D1",
+  "provider_a": "primary-evidence-store",
+  "provider_b": "portable-local-evidence-root",
+  "canonical_contract": "append-only-hash-chain",
+  "fault": "provider_a_unavailable",
+  "expected_decision": "WRITE_LOCAL_EVIDENCE_ROOT",
+  "observed_decision": "WRITE_LOCAL_EVIDENCE_ROOT",
+  "continued_operation": true,
+  "substitution_executed": false,
+  "replay_reference": "fixture-only-not-external-replay",
+  "evidence_state": "FIXTURE_ONLY",
+  "claim_boundary": "NO_EXTERNAL_VERIFICATION_CLAIM",
+  "promotion": "BLOCKED"
+}
