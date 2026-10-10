@@ -110,7 +110,7 @@ jobs:
           python -m unittest discover -s tests -p 'test_*.py' -v
       - name: Run negative scenario tests
         run: python -m unittest discover -s tests -p 'test_*.py' -v
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: always()
         with:
           name: s001a-contract-${{ needs.preflight.outputs.execution_id }}
@@ -137,7 +137,7 @@ jobs:
             --output out/${{ needs.preflight.outputs.execution_id }}/functional
       - name: Validate functional invariants
         run: python validators/validate_s001a_result.py out/${{ needs.preflight.outputs.execution_id }}/functional/result.json
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: always()
         with:
           name: s001a-functional-${{ needs.preflight.outputs.execution_id }}
@@ -169,7 +169,7 @@ jobs:
             --output out/${{ needs.preflight.outputs.execution_id }}/stress
       - name: Validate stress invariants
         run: python validators/validate_s001a_result.py out/${{ needs.preflight.outputs.execution_id }}/stress/result.json
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: always()
         with:
           name: s001a-stress-${{ needs.preflight.outputs.execution_id }}
@@ -208,7 +208,7 @@ jobs:
             --output envelope/package
       - name: Enforce fail-closed promotion gate
         run: python tools/evaluate_gate.py --envelope envelope/package --expected BLOCKED
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: always()
         with:
           name: s001a-evidence-${{ needs.preflight.outputs.execution_id }}
