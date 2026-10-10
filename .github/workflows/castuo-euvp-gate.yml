@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Dependency review
         if: github.event_name == 'pull_request'
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: high
       - name: Secret-pattern gate
@@ -31,7 +31,7 @@ jobs:
           echo 'PASS:secret-scan-within-declared-scope' | tee artifacts/euvp/status.txt
       - name: Upload evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: castuo-evidence-euvp-evidence
           path: artifacts/euvp
