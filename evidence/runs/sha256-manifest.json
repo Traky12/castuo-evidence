@@ -1,0 +1,27 @@
+{
+  "aggregate_method": "sha256(utf8 of path TAB sha256 LF for entries in listed order)",
+  "aggregate_sha256": "b17abf439859a0ae559b1a90188906592539f70f5ae2d6568ad99d018223c3c7",
+  "entries": [
+    {
+      "path": "runners/s001a_runner.py",
+      "sha256": "41077a6848ec1429e34cf20babcf5fb2b37ab2fbc4f675b20c840ab8f49ca360"
+    },
+    {
+      "path": "tests/test_s001a_determinism.py",
+      "sha256": "672ea96ef265ba77f3746f2d2394d778561fda818e383850b945d5a7220ae931"
+    },
+    {
+      "path": "evidence/runs/unittest.txt",
+      "sha256": "7a0ab9f4c83781c19489b687108601e62a9543920cddf3b1e9fd31284ffedca8"
+    },
+    {
+      "path": "evidence/runs/repro-report.json",
+      "sha256": "ad0ca441232622c97ccecbc632f56dcd6ca5f13039443364b19e113b535ea00c"
+    }
+  ],
+  "file_count": 4,
+  "hash_algorithm": "SHA-256",
+  "manifest_is_self_hashed": false,
+  "schema": "castuo.file-hashes.v1",
+  "scope": "PR #24 synthetic local test evidence"
+}
