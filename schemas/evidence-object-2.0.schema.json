@@ -4,30 +4,83 @@
   "title": "EvidenceObject2.0",
   "type": "object",
   "properties": {
-    "schema_version": { "type": "string" },
-    "evidence_id": { "type": "string" },
-    "capability_id": { "type": "string" },
-    "contract_id": { "type": "string" },
-    "implementation_id": { "type": "string" },
-    "execution_id": { "type": "string" },
-    "fixture_hash": { "type": "string" },
-    "input_hash": { "type": "string" },
-    "output_hash": { "type": "string" },
-    "evidence_hash": { "type": "string" },
-    "scope": { "type": "string" },
-    "review_status": { "type": "string" },
-    "claim_boundary": { "type": "string" },
-    "rollback_reference": { "type": "string" },
+    "schema_version": {
+      "type": "string"
+    },
+    "evidence_id": {
+      "type": "string"
+    },
+    "capability_id": {
+      "type": "string"
+    },
+    "contract_id": {
+      "type": "string"
+    },
+    "implementation_id": {
+      "type": "string"
+    },
+    "execution_id": {
+      "type": "string"
+    },
+    "fixture_hash": {
+      "type": "string"
+    },
+    "input_hash": {
+      "type": "string"
+    },
+    "output_hash": {
+      "type": "string"
+    },
+    "evidence_hash": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "review_status": {
+      "type": "string"
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "rollback_reference": {
+      "type": "string"
+    },
     "assurance": {
       "type": "object",
       "properties": {
-        "oneD": { "type": "boolean" },
-        "oneV": { "type": "boolean" },
-        "oneR": { "type": "boolean" },
-        "oneA": { "type": "boolean" }
+        "oneD": {
+          "type": "boolean"
+        },
+        "oneV": {
+          "type": "boolean"
+        },
+        "oneR": {
+          "type": "boolean"
+        },
+        "oneA": {
+          "type": "boolean"
+        }
       },
-      "required": ["oneD", "oneV", "oneR", "oneA"]
+      "required": [
+        "oneD",
+        "oneV",
+        "oneR",
+        "oneA"
+      ]
+    },
+    "output_hash_scope": {
+      "type": "string",
+      "enum": [
+        "S001A_DETERMINISTIC_FUNCTIONAL_V1"
+      ]
     }
   },
-  "required": ["schema_version", "evidence_id", "capability_id", "scope", "assurance"]
+  "required": [
+    "schema_version",
+    "evidence_id",
+    "capability_id",
+    "scope",
+    "assurance"
+  ]
 }
