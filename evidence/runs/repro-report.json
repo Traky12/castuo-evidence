@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-31",
+  "decision": "LOCAL_TEST_PASS_WITH_SCOPE_ONLY",
+  "non_claims": [
+    "Not independent reproduction",
+    "Not external S-001A interoperability",
+    "Not field validation",
+    "Not a G1/G2 acceptance",
+    "No merge, no release, no production"
+  ],
+  "repository": "Traky12/castuo-evidence",
+  "runtime": {
+    "network": "not required",
+    "platform": "Linux",
+    "python": "3.13.5"
+  },
+  "schema": "castuo.s001a.functional-hash.evidence.v1",
+  "source_git_blob": "7d7a10ff725fe79393a2878d3b5e0d9932357a5b",
+  "synthetic_reproduction": {
+    "fixture": "synthetic locally created",
+    "iterations": 36,
+    "legacy_events_equal": true,
+    "legacy_output_hashes_equal": false,
+    "mutated_fixture_changes_functional_hash": true,
+    "new_events_equal": true,
+    "new_output_hashes_equal": true,
+    "profile": "controlled-stress",
+    "promotion": "BLOCKED",
+    "seed": 20260819
+  },
+  "target_source_commit": "faea9ad97f2b2d6bd28134ca2683075cc6f33b9f",
+  "test_git_blob": "adb5d3d1a4b265e1289982fc724b7487da15f6ad",
+  "unit_test_command": "python -B -m unittest discover -s tests -p test_s001a_determinism.py -v",
+  "unit_tests": {
+    "exit_code": 0,
+    "failed": 0,
+    "log": "evidence/runs/unittest.txt",
+    "passed": 4
+  }
+}

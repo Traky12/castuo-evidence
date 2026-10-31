@@ -2,6 +2,9 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
+
+from verify_output_hash import verify_result_hash
 
 
 def sha256(path: Path) -> str:
@@ -16,6 +19,10 @@ def main() -> int:
     args = parser.parse_args()
 
     result = json.loads(args.result.read_text(encoding="utf-8"))
+    if not re.fullmatch(r"[0-9a-f]{40}", args.commit):
+        parser.error("--commit must be literal 40-character lowercase source SHA")
+    if not verify_result_hash(result):
+        parser.error("invalid or legacy output_hash_scope/digest; historical files cannot be promoted")
     args.output.mkdir(parents=True, exist_ok=True)
     semantic = {
         "schema_version": "2.0.0",
@@ -27,9 +34,11 @@ def main() -> int:
         "fixture_hash": result["fixture_hash"],
         "input_hash": result["fixture_hash"],
         "output_hash": result["output_hash"],
+        "output_hash_scope": result["output_hash_scope"],
         "evidence_hash": "pending",
         "scope": "LOCAL",
         "review_status": "REVIEW_PENDING",
+        "promotion": "BLOCKED",
         "claim_boundary": "LOCAL_RESULT_WITHIN_DECLARED_SCOPE",
         "rollback_reference": "local-s001a-rollback",
         "assurance": {"oneD": True, "oneV": False, "oneR": False, "oneA": False},
