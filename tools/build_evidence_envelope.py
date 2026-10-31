@@ -38,6 +38,7 @@ def main() -> int:
         "evidence_hash": "pending",
         "scope": "LOCAL",
         "review_status": "REVIEW_PENDING",
+        "promotion": "BLOCKED",
         "claim_boundary": "LOCAL_RESULT_WITHIN_DECLARED_SCOPE",
         "rollback_reference": "local-s001a-rollback",
         "assurance": {"oneD": True, "oneV": False, "oneR": False, "oneA": False},
