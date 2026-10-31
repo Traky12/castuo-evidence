@@ -152,7 +152,17 @@ def run(profile: str, fixture: Path, output: Path, iterations: int, seed: int) -
         "promotion": "BLOCKED",
         "assurance": {"oneD": True, "oneV": False, "oneR": False, "oneA": False},
     }
-    result["output_hash"] = sha256_bytes(canonical_json(result))
+    # Reproducibility covers functional decisions and counters only.
+    # Wall-clock latencies and throughput remain diagnostic, never hash inputs.
+    result["output_hash_scope"] = "S001A_DETERMINISTIC_FUNCTIONAL_V1"
+    deterministic_result = {
+        **result,
+        "metrics": {
+            key: value for key, value in result["metrics"].items()
+            if key not in ("latency_ms", "throughput")
+        },
+    }
+    result["output_hash"] = sha256_bytes(canonical_json(deterministic_result))
     (output / "result.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (output / "events.jsonl").write_text("".join(json.dumps(event, sort_keys=True) + "\n" for event in event_dicts), encoding="utf-8")
     return result
