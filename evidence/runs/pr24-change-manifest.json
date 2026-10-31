@@ -1,0 +1,53 @@
+{
+  "schema": "castuo.changed-files.sha256.v1",
+  "scope": "PR_CHANGED_FILES_ONLY_NOT_FULL_REPOSITORY",
+  "repository": "Traky12/castuo-evidence",
+  "pr": 24,
+  "source_head_before_manifest": "e06dd28c491d53409a802352c0ce77ef90f08a9f",
+  "hash_algorithm": "SHA-256",
+  "file_count": 9,
+  "files": [
+    {
+      "path": "evidence/runs/repro-report.json",
+      "sha256": "ad0ca441232622c97ccecbc632f56dcd6ca5f13039443364b19e113b535ea00c"
+    },
+    {
+      "path": "evidence/runs/sha256-manifest.json",
+      "sha256": "fc14f4ca31fa4b8269ac6b1c503b6a3e02e4346f3117fe1762904f08469c749c"
+    },
+    {
+      "path": "evidence/runs/unittest.txt",
+      "sha256": "7a0ab9f4c83781c19489b687108601e62a9543920cddf3b1e9fd31284ffedca8"
+    },
+    {
+      "path": "runners/s001a_runner.py",
+      "sha256": "41077a6848ec1429e34cf20babcf5fb2b37ab2fbc4f675b20c840ab8f49ca360"
+    },
+    {
+      "path": "schemas/evidence-object-2.0.schema.json",
+      "sha256": "5f22e0696d78c331ddaa7f4cde413d390f580ff86fb786ad82dbd53c6f5566d2"
+    },
+    {
+      "path": "tests/test_output_hash_migration.py",
+      "sha256": "5b7d1aaeb302a9d1e57c75ba88fc0dc204395bd0043bac2b23ae9e206a0ff057"
+    },
+    {
+      "path": "tests/test_s001a_determinism.py",
+      "sha256": "672ea96ef265ba77f3746f2d2394d778561fda818e383850b945d5a7220ae931"
+    },
+    {
+      "path": "tools/build_evidence_envelope.py",
+      "sha256": "b3887c8bef1a39bdf1d46df31233e43f8759c6a06bf07dea85b96ac423404c6b"
+    },
+    {
+      "path": "tools/verify_output_hash.py",
+      "sha256": "a2d97bcfd98a235c25c133060df9d5ccb5a8974b13d05ff81ad6aa1f000ea3d6"
+    }
+  ],
+  "aggregate_method": "sha256(utf8(path + tab + hexsha256 + newline) in sorted path order)",
+  "aggregate_sha256": "db63baab8e23ab7e755ef7b92b452845cd83b5b025686d749928cdd6229c57e9",
+  "self_included": false,
+  "G1": "BLOCKED",
+  "G2": "BLOCKED",
+  "independent_review": "PENDING"
+}
