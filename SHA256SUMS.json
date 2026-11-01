@@ -2,8 +2,8 @@
   "schema": "castuo.sha256-manifest.v1",
   "scope": "complete_repository_tree_candidate",
   "source_base_commit": "08efb251973a0ce87bd704c67e118ed5bb24ef1a",
-  "file_count": 48,
-  "global_sha256": "65f51d1644b40e2ac7057a6a5a6e6053fb3c9cfd8a4f823e1ef5638155e9714f",
+  "file_count": 51,
+  "global_sha256": "51b36925694c14e32f8d2ab337dd5c962ca75340f7e32bf20d98feb55bfa2f5e",
   "algorithm": "SHA-256",
   "aggregation": "SHA256(concat(sorted(relative UTF-8 path + NUL + per-file sha256 hex + LF)))",
   "self_excluded": true,
@@ -37,6 +37,10 @@
     {
       "path": ".github/workflows/secret-scan.yml",
       "sha256": "625cd33b0df925b7fb3b56773ddca01e4426a676f35e20b2c69d3dd7791bc65a"
+    },
+    {
+      "path": ".github/workflows/traceability-integrity.yml",
+      "sha256": "a47cad4dcda8a27b214b32ebd334357f4cf3087c7017b63a5eccbabaf5846e3c"
     },
     {
       "path": ".gitleaks.toml",
@@ -179,12 +183,20 @@
       "sha256": "c808f6be47bd1001536600fb11bf620038f65b95d77bb48affc6b4e2df84547a"
     },
     {
+      "path": "tests/test_repository_manifest.py",
+      "sha256": "74b10338b9d2f537ad0a4ced7f17109ee2e951481d471d2c5f570e7a5f1d9d40"
+    },
+    {
       "path": "tools/build_evidence_envelope.py",
       "sha256": "99f430b304aa484a604e18552cf8093225b33ee218d8e01ce766b59c4e38e826"
     },
     {
       "path": "tools/evaluate_gate.py",
       "sha256": "8e33076c2b8c195bae155726a2c97639b6700b056b323bed9569f9ddd237d88c"
+    },
+    {
+      "path": "tools/verify_repository_manifest.py",
+      "sha256": "b180ed5da46b748dc09a5e2a7702bc0220cda60c8b26f3817a7352772f56a526"
     },
     {
       "path": "validators/validate_dependency_exit_fixtures.py",
