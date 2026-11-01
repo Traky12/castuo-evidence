@@ -1,0 +1,206 @@
+{
+  "schema": "castuo.sha256-manifest.v1",
+  "scope": "complete_repository_tree_candidate",
+  "source_base_commit": "08efb251973a0ce87bd704c67e118ed5bb24ef1a",
+  "file_count": 48,
+  "global_sha256": "65f51d1644b40e2ac7057a6a5a6e6053fb3c9cfd8a4f823e1ef5638155e9714f",
+  "algorithm": "SHA-256",
+  "aggregation": "SHA256(concat(sorted(relative UTF-8 path + NUL + per-file sha256 hex + LF)))",
+  "self_excluded": true,
+  "gitlinks": [],
+  "promotion": "BLOCKED",
+  "files": [
+    {
+      "path": ".github/CODEOWNERS",
+      "sha256": "94c9523f0d58ce093b117267caaf8cb48437788d08afd6ff7ff26114325ed5a1"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "sha256": "c4aed7cf542077ddebd4225bd9462b024643d6506768b97223fca500137ad1db"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "sha256": "c7eae0ed96ab5b54d399432963b97b0d84af49a2de61830e7f389ceeda9831f9"
+    },
+    {
+      "path": ".github/workflows/castuo-euvp-gate.yml",
+      "sha256": "7345b1148e03db918da103645d3db6d774077fd7189a9d96cfef191bc2f66655"
+    },
+    {
+      "path": ".github/workflows/integration-boundary.yml",
+      "sha256": "e9297d9c7774954ab3fd42bf5d6d536d4b4d41169fa91000ca0107a033e9d008"
+    },
+    {
+      "path": ".github/workflows/s001a-stress.yml",
+      "sha256": "3f7b5a0a24861994719e505d41ce5a6aac2082601faa2d07ac647326fd19ac65"
+    },
+    {
+      "path": ".github/workflows/secret-scan.yml",
+      "sha256": "625cd33b0df925b7fb3b56773ddca01e4426a676f35e20b2c69d3dd7791bc65a"
+    },
+    {
+      "path": ".gitleaks.toml",
+      "sha256": "db9b5b468277d16e8d35cad2ee989c7d07000b03cb5b9212fb6e99b7057a9cfb"
+    },
+    {
+      "path": "README.md",
+      "sha256": "fae70f0279db13b624c9b3c1d22d17fc90d901543134b1ac097c50d604dcc9de"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "0bb98c69a77238eb0f937c5a8c07e91151ab577c955894711a48fb5616fa515d"
+    },
+    {
+      "path": "baseline/public-evidence-baseline.yml",
+      "sha256": "7a6bc719b0db4f2f41973080ffaf71be13be6b6f442c334ea6a65b4db2098713"
+    },
+    {
+      "path": "docs/CASTUO_DEEP_AUDIT_2026-08-22.md",
+      "sha256": "6a01f541130e5dcecbdc4ca987a99e984b5347488c2297f4612235845490b041"
+    },
+    {
+      "path": "docs/CASTUO_ECOSYSTEM_INTEGRATION_2026-08-22.md",
+      "sha256": "323bc14013ae5c5b8c051579833a9cf92157309e99832eb873f4abe2c42a5d74"
+    },
+    {
+      "path": "docs/CASTUO_INTEGRATION_BOUNDARY_2026.md",
+      "sha256": "8e7b4aa44e0bc926f1876ed13eb6041c6f3cd57eeac34bbffe9d82f057889e3a"
+    },
+    {
+      "path": "docs/INDEPENDENT-REVIEW-REPRODUCTION-AND-SIGNING.md",
+      "sha256": "cb0e674ad157911889d139a77cfc94337d6953238784b184c47000bec3ffe026"
+    },
+    {
+      "path": "docs/S001A_FOREIGN_REPLAY_PROTOCOL.md",
+      "sha256": "ff7c81922f8976da6a74d3ecfae2ae7013bb040f8df0940d1e1139e4cf37dea1"
+    },
+    {
+      "path": "docs/TRACEABILITY_INTEROP_V1.md",
+      "sha256": "0358c6bf244c1cda8ce89e4fb0242deb5816bbf94d380939c55e6ae576f6b855"
+    },
+    {
+      "path": "docs/castuo-system-integration.md",
+      "sha256": "99c72a406cbe881a5a73718469727a890e2b4d593dd07af0cfa4c7aec8d750f0"
+    },
+    {
+      "path": "docs/claim-boundary.md",
+      "sha256": "2d763b9cea3af31781ae6401ae52f078e632cb43e7b5c3700a7b277b3368d8f9"
+    },
+    {
+      "path": "docs/governance/CASTUO-ECOSYSTEM-SYNC-2026-08-22.md",
+      "sha256": "628efa630a7f9487261e97500d192edebe28e20ecf53bdf7d367de2dedfb2499"
+    },
+    {
+      "path": "docs/pr1-merge-controlled-stress-runbook.md",
+      "sha256": "2c066b33d43f5130b0c4893eb3256efb5030071116d0af4103485ed07ce624a2"
+    },
+    {
+      "path": "docs/reanchor/EVID-BRANCH-RECONCILIATION-001.md",
+      "sha256": "468151aa73793d7e0fced9af262c05b414754f25bdedf51aa338e0a422011035"
+    },
+    {
+      "path": "docs/reanchor/EVID-REANCHOR-001.md",
+      "sha256": "4e93349e2ba608cb6f42d850525d4942dda0e747dba669e92e81134efa48dfc1"
+    },
+    {
+      "path": "docs/s001a-metrics-alerting-and-pr1-visual-format.md",
+      "sha256": "e3533a1f21d230e0cf0a1cdfb14f3efe31e0e17067130f597a31e3487a6fc514"
+    },
+    {
+      "path": "evidence/local/EVID-EVT-0002.json",
+      "sha256": "b1c061228bcb0d2bd849655227a1e404a965fd5029063d6cc20209cd83384f81"
+    },
+    {
+      "path": "evidence/s001a/evidence-envelope.json",
+      "sha256": "94e2b8397c2fe81796716b491b744b7195f11ec1352678f3bffd0ed5c800001d"
+    },
+    {
+      "path": "evidence/s001a/fixtures/S-001A-frozen-fixture.json",
+      "sha256": "284c72664bb4948dbb6f2c1c0e54bc043f40349824c983624e592952026c33c7"
+    },
+    {
+      "path": "evidence/s001a/foreign-verification.PROVENANCE.md",
+      "sha256": "35f4a501a27007aedc8e5648d0c6bdab7a425bea1a00b5e336520775534c9774"
+    },
+    {
+      "path": "evidence/s001a/foreign-verification.json",
+      "sha256": "fc1090a653267280774ada295369a101ea15784b93d2fc14042cb565c9a3c333"
+    },
+    {
+      "path": "evidence/s001a/negative-security-tests.json",
+      "sha256": "5f597d5ecf7437f703fd1870e51cfdef4357c4d7f0f51e72bca45b9b7bc0752c"
+    },
+    {
+      "path": "evidence/s001a/replay-result.json",
+      "sha256": "301d39926274ebd6c592700ca2b4736aeb4d0b24e75a91fe2bdd3b5f6102c9f5"
+    },
+    {
+      "path": "fixtures/dependency-exit/D0-identity-provider-substitution.json",
+      "sha256": "a0393234d7c538a0a45f5920c9829d2e113c00c0c802455835222230bee9f344"
+    },
+    {
+      "path": "fixtures/dependency-exit/D1-evidence-root-substitution.json",
+      "sha256": "99eed44f18aefb7bdf256c438cc360d0b378349863bd2de6f20463758dfab39c"
+    },
+    {
+      "path": "governance/castuo-integration.yaml",
+      "sha256": "79cf12bbcd7399d495e0aaf026ae7b75d308b6eb182fb16d2b7834f9e53bbdfc"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "sha256": "a1484994b192bb68fc48a0f8f2e949c4c640e3d7c9bdc4f7fca132b4d8c512b8"
+    },
+    {
+      "path": "runners/s001a_runner.py",
+      "sha256": "289d17cddd06cdd7ab63e412e18094573bdcd9836672ddbaba02ff4894ebbff6"
+    },
+    {
+      "path": "scenarios/S-001A/N01-policy-unavailable.json",
+      "sha256": "4a1dd30896c4971eec1df8637aff5a8a30304bd41ccdf528a6535bec3e008ee1"
+    },
+    {
+      "path": "scenarios/S-001A/stress-schedule.yml",
+      "sha256": "e93585db9f7b9440f5361a4ed88d5f0e5a19fcfdb6a0fcdbc1ac186226f20f2c"
+    },
+    {
+      "path": "schemas/evidence-object-2.0.schema.json",
+      "sha256": "ce0c78efcaa8851b6a09e8a7f5831803bc2e103e45e543e1a9a7a670fa4c74d3"
+    },
+    {
+      "path": "scripts/pre_pr_s001a.sh",
+      "sha256": "c2e62c1cb540ca902ae52092279c8d8a8438e9b04f613eb0d928cb45dbdc6ad1"
+    },
+    {
+      "path": "tests/test_dependency_exit_fixtures.py",
+      "sha256": "f746321bc6e5cd364fe449473ed98ef67cc10ff0cb1a1003c6d99a02decf2370"
+    },
+    {
+      "path": "tests/test_evidence_schema.py",
+      "sha256": "c808f6be47bd1001536600fb11bf620038f65b95d77bb48affc6b4e2df84547a"
+    },
+    {
+      "path": "tools/build_evidence_envelope.py",
+      "sha256": "99f430b304aa484a604e18552cf8093225b33ee218d8e01ce766b59c4e38e826"
+    },
+    {
+      "path": "tools/evaluate_gate.py",
+      "sha256": "8e33076c2b8c195bae155726a2c97639b6700b056b323bed9569f9ddd237d88c"
+    },
+    {
+      "path": "validators/validate_dependency_exit_fixtures.py",
+      "sha256": "79ac3667e0aeb264bec985abba0f83d9d0633d1b10c963c162b9f4826d756983"
+    },
+    {
+      "path": "validators/validate_evidence.py",
+      "sha256": "740310431667d745643c58a358e5703fa9911a8f260e90dd0b60a68f4719f712"
+    },
+    {
+      "path": "validators/validate_s001a_metrics.py",
+      "sha256": "f87d9894a6ac1b836cf6ea2f120fa1333e51e01ace5eb35a6a5ea8323a9f32aa"
+    },
+    {
+      "path": "validators/validate_s001a_result.py",
+      "sha256": "ba4c4c5dcee92487a3ee018a118bc7e6783f5e849d6194262cc3a0dbaebe09c3"
+    }
+  ]
+}
