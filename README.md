@@ -152,3 +152,19 @@ commercial validation · federation · universal or regulatory compliance.
 ## Security
 
 See [`SECURITY.md`](SECURITY.md).
+
+<!-- CASTUO:TRACE:INTEGRATION:V1:START -->
+## Trazabilidad verificable entre repositorios — fase candidata
+
+Este repositorio conserva **evidencia pública acotada**, no un sistema de certificación ni una validación de campo. La autoridad del estado técnico permanece en el núcleo privado `Castuo-system`. Ningún cambio documental repara retrospectivamente los defectos históricos del expediente `EVID-EVT-0002`.
+
+La cadena objetivo es **Agro Edge / operaciones offline → Evidence → e3bundle → decisión humana gobernada**. `castuo-e3-001` verifica integridad y firmas; no acredita por sí solo origen físico, autenticación de identidad, frescura, independencia de los revisores o inocuidad.
+
+El PR [Evidence #24](https://github.com/Traky12/castuo-evidence/pull/24) propone `output_hash_scope=S001A_DETERMINISTIC_FUNCTIONAL_V1`. Este contrato nuevo **no** debe reinterpretar hashes históricos ni dar por superado el replay externo. [E3 #104](https://github.com/Traky12/castuo-e3-001/pull/104) y [Edge #38](https://github.com/Traky12/castuo-agro-edge/pull/38) siguen candidatos separados.
+
+**Meta de calidad** ≤0,3 DPMO por CTQ / población: `NOT_DEMONSTRATED`. ISO 22000/22005/27001 son marcos de gestión propuestos, no certificaciones concedidas.
+
+[Contrato de interoperabilidad, seguridad y aceptación](docs/TRACEABILITY_INTEROP_V1.md) · [Inventario SHA-256 completo de la rama candidata](SHA256SUMS.json).
+
+**G1/G2=BLOCKED. MERGE, RELEASE y PRODUCTION=BLOCKED** hasta HEAD exacto, pruebas negativas, manifiestos, replay independiente y revisores humanos distintos.
+<!-- CASTUO:TRACE:INTEGRATION:V1:END -->
